@@ -32,9 +32,9 @@ char webpage[] PROGMEM = R"=====(
 <h1>Servo Controls</h1>
 
 <h3> Move to 90 </h3>
-<button onclick="window.location = 'http://esp.local/servo90/on'">On</button><button onclick="window.location = 'http://esp.local/servo/off'">Off</button>
+<button onclick="window.location = 'http://swan.local/turnon'">On</button><button onclick="window.location = 'http://swan.local/off'">Off</button>
 <h3> Move to 180</h3>
-<button onclick="window.location = 'http://esp.local/servo180/on'">On</button><button onclick="window.location = 'http://esp.local/servo/off'">Off</button>
+<button onclick="window.location = 'http://swan.local/spinright'">On</button><button onclick="window.location = 'http://swan.local/off'">Off</button>
 
 </center>
 </body>
@@ -52,21 +52,20 @@ void setup(void)
   
   Serial.begin(115200);
   
-  servo1.attach(servo1Pin);
 
-  liftServo1.attach(liftServo1Pin)
-  liftServo2.attach(liftServo2Pin)
-  liftServo3.attach(liftServo3Pin)
-  liftServo4.attach(liftServo4Pin)
-  liftServo5.attach(liftServo5Pin)
-  liftServo6.attach(liftServo6Pin)
+  liftServo1.attach(liftServo1Pin);
+  liftServo2.attach(liftServo2Pin);
+  liftServo3.attach(liftServo3Pin);
+  liftServo4.attach(liftServo4Pin);
+  liftServo5.attach(liftServo5Pin);
+  liftServo6.attach(liftServo6Pin);
 
-  spinServo1.attach(spinServo1Pin)
-  spinServo2.attach(spinServo2Pin)
-  spinServo3.attach(spinServo3Pin)
-  spinServo4.attach(spinServo4Pin)
-  spinServo5.attach(spinServo5Pin)
-  spinServo6.attach(spinServo6Pin)
+  spinServo1.attach(spinServo1Pin);
+  spinServo2.attach(spinServo2Pin);
+  spinServo3.attach(spinServo3Pin);
+  spinServo4.attach(spinServo4Pin);
+  spinServo5.attach(spinServo5Pin);
+  spinServo6.attach(spinServo6Pin);
 
   WiFi.softAP("swan dress", "");
   Serial.println("softap");
@@ -87,45 +86,62 @@ void setup(void)
   
   server.on("/turnon", HTTP_GET, [](AsyncWebServerRequest * request)
   { 
-    liftServo1.write(100)
-    liftServo2.write(100)
-    liftServo3.write(100)
-    liftServo4.write(100)
-    liftServo5.write(100)
-    liftServo6.write(100)
+    liftServo1.write(100);
+    liftServo2.write(100);
+    liftServo3.write(100);
+    liftServo4.write(100);
+    liftServo5.write(100);
+    liftServo6.write(100);
   request->redirect("http://swan.local/");
   });
 
   server.on("/turndown", HTTP_GET, [](AsyncWebServerRequest * request)
   { 
-    liftServo1.write(10)
-    liftServo2.write(10)
-    liftServo3.write(10)
-    liftServo4.write(10)
-    liftServo5.write(10)
-    liftServo6.write(10)
+    liftServo1.write(10);
+    liftServo2.write(10);
+    liftServo3.write(10);
+    liftServo4.write(10);
+    liftServo5.write(10);
+    liftServo6.write(10);
   request->redirect("http://swan.local/");
   });
 
   server.on("/spinright", HTTP_GET, [](AsyncWebServerRequest * request)
   { 
-    spinServo1.write(100)
-    spinServo2.write(100)
-    spinServo3.write(100)
-    spinServo4.write(100)
-    spinServo5.write(100)
-    spinServo6.write(100)
+    spinServo1.write(100);
+    spinServo2.write(100);
+    spinServo3.write(100);
+    spinServo4.write(100);
+    spinServo5.write(100);
+    spinServo6.write(100);
   request->redirect("http://swan.local/");
   });
 
   server.on("/spinleft", HTTP_GET, [](AsyncWebServerRequest * request)
   { 
-    spinServo1.write(10)
-    spinServo2.write(10)
-    spinServo3.write(10)
-    spinServo4.write(10)
-    spinServo5.write(10)
-    spinServo6.write(10)
+    spinServo1.write(10);
+    spinServo2.write(10);
+    spinServo3.write(10);
+    spinServo4.write(10);
+    spinServo5.write(10);
+    spinServo6.write(10);
+  request->redirect("http://swan.local/");
+  });
+
+  server.on("/off", HTTP_GET, [](AsyncWebServerRequest * request)
+  { 
+    liftServo1.write(0);
+    liftServo2.write(0);
+    liftServo3.write(0);
+    liftServo4.write(0);
+    liftServo5.write(0);
+    liftServo6.write(0);
+    spinServo1.write(0);
+    spinServo2.write(0);
+    spinServo3.write(0);
+    spinServo4.write(0);
+    spinServo5.write(0);
+    spinServo6.write(0);
   request->redirect("http://swan.local/");
   });
 
