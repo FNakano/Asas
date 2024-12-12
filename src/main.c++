@@ -3,154 +3,97 @@
 #include <ESPAsyncWebServer.h>
 #include <ESP32Servo.h>
 
+#define NUM_SERVOS 6
+
+const int liftServoPins[] = {13, 12, 14, 27, 26, 25};
+const int spinServoPins[] = {15, 2, 4, 5, 19, 21};
+
+Servo liftServos[NUM_SERVOS];
+Servo spinServos[NUM_SERVOS];
+
 AsyncWebServer server(80);
 
-Servo liftServo1, liftServo2, liftServo3, liftServo4, liftServo5, liftServo6;
-Servo spinServo1, spinServo2, spinServo3, spinServo4, spinServo5, spinServo6;
-
-int liftServo1Pin = 12;
-int liftServo2Pin = 13;
-int liftServo3Pin = 14;
-int liftServo4Pin = 15;
-int liftServo5Pin = 16;
-int liftServo6Pin = 17;
-
-int spinServo1Pin = 18;
-int spinServo2Pin = 19;
-int spinServo3Pin = 20;
-int spinServo4Pin = 21;
-int spinServo5Pin = 22;
-int spinServo6Pin = 23;
-
-char webpage[] PROGMEM = R"=====(
-
+const char* webpage = R"=====(
 <!DOCTYPE html>
 <html>
 <body>
-
 <center>
 <h1>Servo Controls</h1>
-
-<h3> Move to 90 </h3>
-<button onclick="window.location = 'http://swan.local/turnon'">On</button><button onclick="window.location = 'http://swan.local/off'">Off</button>
-<h3> Move to 180</h3>
-<button onclick="window.location = 'http://swan.local/spinright'">On</button><button onclick="window.location = 'http://swan.local/off'">Off</button>
-
+<button onclick="window.location = 'http://swan.local/turnon'">Lift Up</button>
+<button onclick="window.location = 'http://swan.local/turndown'">Lift Down</button><br><br>
+<button onclick="window.location = 'http://swan.local/spinright'">Spin Right</button>
+<button onclick="window.location = 'http://swan.local/spinleft'">Spin Left</button>
+<button onclick="window.location = 'http://swan.local/off'">Stop</button>
 </center>
 </body>
 </html>
-
 )=====";
 
-void notFound(AsyncWebServerRequest *request)
-{
-  request->send(404, "text/plain", "Page Not found");
+
+void notFound(AsyncWebServerRequest *request) {
+  request->send(404, "text/plain", "Page Not Found");
 }
 
-void setup(void)
-{
-  
+void setServoPositions(Servo servos[], int numServos, int position) {
+  for (int i = 0; i < numServos; i++) {
+    if (servos[i].attached()) { 
+      servos[i].write(position);
+      delay(500);
+    } else {
+      Serial.printf("Servo %d não está anexado!\n", i);
+    }
+  }
+}
+
+
+void setup() {
   Serial.begin(115200);
-  
 
-  liftServo1.attach(liftServo1Pin);
-  liftServo2.attach(liftServo2Pin);
-  liftServo3.attach(liftServo3Pin);
-  liftServo4.attach(liftServo4Pin);
-  liftServo5.attach(liftServo5Pin);
-  liftServo6.attach(liftServo6Pin);
-
-  spinServo1.attach(spinServo1Pin);
-  spinServo2.attach(spinServo2Pin);
-  spinServo3.attach(spinServo3Pin);
-  spinServo4.attach(spinServo4Pin);
-  spinServo5.attach(spinServo5Pin);
-  spinServo6.attach(spinServo6Pin);
+  for (int i = 0; i < NUM_SERVOS; i++) {
+    liftServos[i].attach(liftServoPins[i]);
+    spinServos[i].attach(spinServoPins[i]);
+  }
 
   WiFi.softAP("swan dress", "");
-  Serial.println("softap");
-  Serial.println("");
+  Serial.print("SoftAP IP address: ");
   Serial.println(WiFi.softAPIP());
-
 
   if (MDNS.begin("swan")) {
     Serial.println("MDNS responder started");
   }
 
-
-
-  server.on("/", [](AsyncWebServerRequest * request)
-  { 
-  request->send_P(200, "text/html", webpage);
-  });
-  
-  server.on("/turnon", HTTP_GET, [](AsyncWebServerRequest * request)
-  { 
-    liftServo1.write(100);
-    liftServo2.write(100);
-    liftServo3.write(100);
-    liftServo4.write(100);
-    liftServo5.write(100);
-    liftServo6.write(100);
-  request->redirect("http://swan.local/");
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send(200, "text/html", webpage);
   });
 
-  server.on("/turndown", HTTP_GET, [](AsyncWebServerRequest * request)
-  { 
-    liftServo1.write(10);
-    liftServo2.write(10);
-    liftServo3.write(10);
-    liftServo4.write(10);
-    liftServo5.write(10);
-    liftServo6.write(10);
-  request->redirect("http://swan.local/");
+  server.on("/turnon", HTTP_GET, [](AsyncWebServerRequest *request){
+    setServoPositions(liftServos, NUM_SERVOS, 100);
+    request->redirect("http://swan.local/");
   });
 
-  server.on("/spinright", HTTP_GET, [](AsyncWebServerRequest * request)
-  { 
-    spinServo1.write(100);
-    spinServo2.write(100);
-    spinServo3.write(100);
-    spinServo4.write(100);
-    spinServo5.write(100);
-    spinServo6.write(100);
-  request->redirect("http://swan.local/");
+  server.on("/turndown", HTTP_GET, [](AsyncWebServerRequest *request){
+    setServoPositions(liftServos, NUM_SERVOS, 10);
+    request->redirect("http://swan.local/");
   });
 
-  server.on("/spinleft", HTTP_GET, [](AsyncWebServerRequest * request)
-  { 
-    spinServo1.write(10);
-    spinServo2.write(10);
-    spinServo3.write(10);
-    spinServo4.write(10);
-    spinServo5.write(10);
-    spinServo6.write(10);
-  request->redirect("http://swan.local/");
+  server.on("/spinright", HTTP_GET, [](AsyncWebServerRequest *request){
+    setServoPositions(spinServos, NUM_SERVOS, 100);
+    request->redirect("http://swan.local/");
   });
 
-  server.on("/off", HTTP_GET, [](AsyncWebServerRequest * request)
-  { 
-    liftServo1.write(0);
-    liftServo2.write(0);
-    liftServo3.write(0);
-    liftServo4.write(0);
-    liftServo5.write(0);
-    liftServo6.write(0);
-    spinServo1.write(0);
-    spinServo2.write(0);
-    spinServo3.write(0);
-    spinServo4.write(0);
-    spinServo5.write(0);
-    spinServo6.write(0);
-  request->redirect("http://swan.local/");
+  server.on("/spinleft", HTTP_GET, [](AsyncWebServerRequest *request){
+    setServoPositions(spinServos, NUM_SERVOS, 10);
+    request->redirect("http://swan.local/");
+  });
+
+  server.on("/off", HTTP_GET, [](AsyncWebServerRequest *request){
+    setServoPositions(liftServos, NUM_SERVOS, 0);
+    setServoPositions(spinServos, NUM_SERVOS, 0);
+    request->redirect("http://swan.local/");
   });
 
   server.onNotFound(notFound);
-
   server.begin();
 }
 
-
-void loop(void)
-{
-}
+void loop() {}
