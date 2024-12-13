@@ -9,11 +9,8 @@ Este relatório descreve o desenvolvimento de um vestido com penas animadas util
 *   **Microcontrolador:** ESP32
 *   **Servo Motores:** 12 servos motores SG90
 *   **Mecanismos Pan-Tilt:** 6 mecanismos pan-tilt, cada um acoplado a um par de servo motores
-*   **Penas:** 6 penas artificiais acopladas aos mecanismos pan-tilt
-*   **Fonte de Alimentação:** Fonte de alimentação externa de 5V para os servos motores
-*   **Material do Vestido:** Tecido e outros materiais para construção do vestido
+*   **Fonte de Alimentação:** Fonte de alimentação externa (power bank) de 5V para os servos motores e o ESP32
 *   **Fios e Conectores:** Para interligação dos componentes eletrônicos
-*   **Protoboard e Jumpers:** Para testes e montagem temporária do circuito
 
 ## Mecanismo Pan-Tilt e Acoplamento com as Penas
 
