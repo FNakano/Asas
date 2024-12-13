@@ -61,8 +61,8 @@ O código realiza as seguintes funções:
 ## App para controle dos motores
 
 Um app foi construído utlizando MIT App Creator para o controle da movimentação dos motores em conjunto com o servidor web. É possível acessá-lo através do QR Code:
-![image](https://github.com/user-attachments/assets/b1f43192-11d3-486e-84c6-dbc2fe5efde0)
 
+![image](https://github.com/user-attachments/assets/b1f43192-11d3-486e-84c6-dbc2fe5efde0)
 
 ## Pinagem dos Motores no ESP32
 
