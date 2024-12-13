@@ -2,7 +2,7 @@
 
 ## Introdução
 
-Este relatório descreve o desenvolvimento de um vestido com penas animadas utilizando 12 servo motores, 6 mecanismos pan-tilt e um microcontrolador ESP32. O projeto visa criar um efeito visual dinâmico, onde as penas podem ser levantadas e giradas, controladas por meio de uma interface web simples.
+Este relatório descreve o desenvolvimento de um vestido com penas animadas utilizando 12 servo motores, 6 mecanismos pan-tilt e um microcontrolador ESP32. O projeto visa criar um efeito visual dinâmico, onde as penas podem ser levantadas e giradas, controladas por meio de uma interface web ou app.
 
 ## Materiais Utilizados
 
