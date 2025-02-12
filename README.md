@@ -1,8 +1,14 @@
-# Relatório de Projeto: Vestido com Penas Animadas
+# Vestido com Penas Animadas - retomada
 
 ## Introdução
 
-Este relatório descreve o desenvolvimento de um vestido com penas animadas utilizando 12 servo motores, 6 mecanismos pan-tilt e um microcontrolador ESP32. O projeto visa criar um efeito visual dinâmico, onde as penas podem ser levantadas e giradas, controladas por meio de uma interface web ou app.
+Esta é uma retomada do projeto [Vestido com Penas Animadas](https://github.com/ksgomes1/trabalho_CF) com a finalidade de aperfeiçoar o dispositivo, o método de desenvolvimento e a documentação.
+
+Na entrega original do projeto notou-se que o dispositivo tinha fragilidades. A base de tecido em que os motores estavam presos era muito maleável, os motores eram costurados à base, o que deixava os motores frouxos, o desenvolvimento teve atrasos pois há pouca informação sobre os contratempos que ocorreram com os servos e com o fornecimento de energia.
+
+Nesta retomada haverá destaque na construção do dispositivo e no método de desenvolvimento do projeto e pouco destaque no desenvolvimento dos programas. O desenvolvimento será concentrado nos encontros presenciais. Estes iniciam com uma conversa sobre o que foi feito na reunião anterior, apresentação do que foi feito no intervalo entre a reunião anterior e a corrente, proposição de atividades para a reunião corrente, execução das atividades, apresentação de resultados das atividades da reunião corrente, definição e distribuição de tarefas (atividades) no intervalo até a próxima reunião (lição de casa) e atualização do diário (para posterior refinamento). Faz parte do método de desenvolvimento o registro de atividades (elaboração de um diário). O diário desta retomada está em [diario.md](./diario.md).    
+
+<!---
 
 ## Materiais Utilizados
 
@@ -85,3 +91,20 @@ A pinagem utilizada para conectar os 12 servo motores ao ESP32 é a seguinte:
 A combinação de microcontrolador, servos motores e mecanismos pan-tilt possibilitou a criação de movimentos complexos e expressivos nas penas. O uso de uma interface web ou app simples para o controle permite fácil manipulação dos movimentos, abrindo espaço para futuras melhorias e novas funcionalidades. Algumas melhorias serão necessárias para garantir o pleno funcionamento do projeto, como uma melhor otimização no consumo de energia do sistema.
 
 Este relatório detalhou o processo de desenvolvimento, a descrição do mecanismo, o funcionamento do código e a pinagem utilizada.
+
+--->
+
+## Resultados
+
+1. Documentação sobre funcionamento dos servos;
+2. Documentação sobre instalação do driver Windows para ESP32 (usando chip CP210X - em contraposição a CH340 e FTDI232);
+3. Nesta página (?)
+   - teste do acionamento de um servo;
+   - teste da fixação de um servo à base;
+     - correções;
+   - teste de levantamento da pena;               <- estamos aqui
+   - teste da rotação da pena;                    <- estamos aqui
+   - integração entre levantamento e rotação;
+   - solução para fornecimento de energia;
+   - construção de todos os conjuntos;
+   - integração e teste integrado;
