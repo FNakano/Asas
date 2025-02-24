@@ -92,10 +92,9 @@ The fast way is to disconnect the servo and (fimly but gently) rotate the axis (
 ![](./images/5026204397931179751.jpg)
 ![](./images/5026204397931179773.jpg)
 
-### Axis rolling videos
+### Axis rolling video
 
-(to be added)
-
+https://www.youtube.com/watch?v=kpjO1ZUUVWM
 
    
 ## References
