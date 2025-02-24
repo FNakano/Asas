@@ -51,7 +51,7 @@ SG90 axis can get stuck. Gears can have burrs. So depending on the axis angle, a
 
 The safest way is to disassemble the servo (unscrew the four screws from the back of the servo) and inspect for burrs, scrobs, cracked gears, ...)
 
-The fast way is to disconnect the servo and (fimly but gently) rotate the axis (in normal conditions it should roll until reach end-of-course). If the axis is stucked there is a chance it unsticks (**warning**: there is also a chance some gear breaks, its your choice)
+The fast way is to disconnect the servo and (fimly but gently) rotate the axis (in normal conditions it should roll until reach end-of-course). If the axis is stucked there is a chance it unsticks (**warning**: there is also a chance some gear breaks, choice is yours)
 
 ## For the curious one
 
