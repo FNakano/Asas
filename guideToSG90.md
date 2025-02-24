@@ -98,3 +98,13 @@ The fast way is to disconnect the servo and (fimly but gently) rotate the axis (
 
 
    
+## References
+
+Servo gets hot at startup: https://forum.arduino.cc/t/servo-gets-hot-at-start-up/282376/23
+
+Servo overheat and jam: https://forum.arduino.cc/t/servos-sg90-overheat-and-jam-really-fast/559423/4
+
+Modify (disassemble) servo: https://www.instructables.com/How-to-Modify-a-Micro-Servo-Motor-SG90-for-Continu/
+
+Other explanation: https://jawhersebai.com/tutorials/how-to-use-the-sg90-servo-motor/
+
