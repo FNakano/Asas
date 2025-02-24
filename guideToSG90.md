@@ -58,7 +58,8 @@ The fast way is to disconnect the servo and (fimly but gently) rotate the axis (
 ### screws
 
 ![](./images/5023774610377780740.jpg)
-![](./images/5023774610377780749.jpg)
+![](./images/5026204397931179712.jpg)
+
 
 ### Cracked motor nut
 
@@ -66,7 +67,7 @@ The fast way is to disconnect the servo and (fimly but gently) rotate the axis (
 
 ### Gears removed
 
-![](./images/5026204397931179712.jpg)
+![](./images/5023774610377780749.jpg)
 
 ### screws removed
 
