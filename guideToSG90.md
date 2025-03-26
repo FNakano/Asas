@@ -41,14 +41,13 @@ Traceback (most recent call last):
 ValueError: duty must be from 0 to 1023
 ```
 
+Micropython PWM docs: https://docs.micropython.org/en/latest/library/machine.PWM.html
+
 Measured the PWM output with an oscilloscope. Setting `s.motor.duty(1023)` does not result in a duty cycle of 100%. There is a 20us "gap" in the waveform. This may be a rounding error or may be an expected behavior. This question (is it a rounding error or an expected behavior?) motivate some experiments.
 
 
-The range usable for SG90 is 23-126 (insert reference here). Calculations shown later.  
+The range usable for SG90, according to some reference, is 23-126. An experiment was done. The range is a bit different. See https://github.com/FNakano/Asas/blob/main/guideToSG90.md#esp32-with-micropython-pwm-experiments . In practical use the values may vary. Program should provide appropriate configuration.
 
-
-
-1023 corresponds to 
 
 #### ESP32 with micropython PWM experiments
 
